@@ -1,0 +1,22 @@
+@model TechSolutionsApp.Models.Project
+@{
+    ViewData["Title"] = "Eliminar proyecto";
+}
+<h2>Eliminar proyecto</h2>
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar el proyecto <strong>@Model.Name</strong>?
+</div>
+<dl class="row">
+    <dt class="col-sm-2">Descripción</dt>
+    <dd class="col-sm-10">@Model.Description</dd>
+    <dt class="col-sm-2">Fecha de inicio</dt>
+    <dd class="col-sm-10">@Model.StartDate.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-2">Usuario</dt>
+    <dd class="col-sm-10">@Model.User?.Name</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
