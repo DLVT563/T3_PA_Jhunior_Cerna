@@ -1,0 +1,38 @@
+@model IEnumerable<TechSolutionsApp.Models.TaskItem>
+@{
+    ViewData["Title"] = "Tareas";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Tareas</h2>
+    <a class="btn btn-primary" asp-action="Create">Nueva tarea</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Estado</th>
+            <th>Proyecto</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Status</td>
+                <td>
+                    @item.Project?.Name
+                    @if (item.Project?.User != null)
+                    {
+                        <small class="text-muted d-block">Responsable: @item.Project.User.Name</small>
+                    }
+                </td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

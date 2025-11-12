@@ -1,0 +1,20 @@
+@model TechSolutionsApp.Models.TaskItem
+@{
+    ViewData["Title"] = "Eliminar tarea";
+}
+<h2>Eliminar tarea</h2>
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la tarea <strong>@Model.Title</strong>?
+</div>
+<dl class="row">
+    <dt class="col-sm-2">Estado</dt>
+    <dd class="col-sm-10">@Model.Status</dd>
+    <dt class="col-sm-2">Proyecto</dt>
+    <dd class="col-sm-10">@Model.Project?.Name</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
