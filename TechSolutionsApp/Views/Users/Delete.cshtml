@@ -1,0 +1,20 @@
+@model TechSolutionsApp.Models.User
+@{
+    ViewData["Title"] = "Eliminar usuario";
+}
+<h2>Eliminar usuario</h2>
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar al usuario <strong>@Model.Name</strong>?
+</div>
+<dl class="row">
+    <dt class="col-sm-2">Correo</dt>
+    <dd class="col-sm-10">@Model.Email</dd>
+    <dt class="col-sm-2">Rol</dt>
+    <dd class="col-sm-10">@Model.Role?.Name</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
